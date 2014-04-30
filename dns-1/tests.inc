@@ -1,5 +1,3 @@
-#include <cassert>
-
 /* 
  *  "using namespace std", "sstream", and "string" defined
  *  in common.h
@@ -28,7 +26,6 @@ assert (st);
 st = z0 . Add ( CRecMX ( "edux", "relay2.fit.cvut.cz.", 10 ) ); // st = true
 assert (st);
 
-cout << z0;
 os_actual << z0;
 os_expected.str(string("fit.cvut.cz\n") +
  string(" +- progtest A 147.32.232.142\n") +
@@ -39,6 +36,8 @@ os_expected.str(string("fit.cvut.cz\n") +
  string(" +- progtest AAAA 2001:718:2:2902:1:2:3:4\n")+
  string(" +- edux MX 0 relay.fit.cvut.cz.\n")+
  " \\- edux MX 10 relay2.fit.cvut.cz.\n");
+cout << os_actual.str();
+cout << os_expected.str();
 assert (os_expected.str() == os_actual.str());
 os_actual.clear();
 os_actual.str("");
@@ -285,7 +284,7 @@ fit.cvut.cz
 */
 os_actual << z2;
 os_expected.str(
-string("fit.cvut.cz") +
+string("fit.cvut.cz\n") +
 string(" +- progtest AAAA 2001:718:2:2902:0:1:2:3\n") +
 string(" +- progtest A 147.32.232.144\n")+
 string(" +- progtest MX 10 relay.fit.cvut.cz.\n")+
@@ -313,10 +312,10 @@ progtest MX 20 relay.fit.cvut.cz.
 */
 os_actual << z2 . Search ( "progtest" );
 os_expected.str(
-string("progtest AAAA 2001:718:2:2902:0:1:2:3") +
-string("progtest A 147.32.232.144") +
-string("progtest MX 10 relay.fit.cvut.cz.")+
-string("progtest MX 20 relay.fit.cvut.cz.")
+string("progtest AAAA 2001:718:2:2902:0:1:2:3\n") +
+string("progtest A 147.32.232.144\n") +
+string("progtest MX 10 relay.fit.cvut.cz.\n")+
+string("progtest MX 20 relay.fit.cvut.cz.\n")
 	);
 assert (os_actual.str() == os_expected.str());
 
